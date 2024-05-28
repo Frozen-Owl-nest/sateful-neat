@@ -92,6 +92,10 @@ class DefaultNodeGene(BaseGene):
     def __init__(self, key):
         assert isinstance(key, int), f"DefaultNodeGene key must be an int, not {key!r}"
         BaseGene.__init__(self, key)
+        self.gene_state = {}
+    def add_gene_state(self,state):
+        self.gene_state.update(state)
+    #def update_state(self):
 
     def distance(self, other, config):
         d = abs(self.bias - other.bias) + abs(self.response - other.response)
@@ -121,3 +125,4 @@ class DefaultConnectionGene(BaseGene):
         if self.enabled != other.enabled:
             d += 1.0
         return d * config.compatibility_weight_coefficient
+

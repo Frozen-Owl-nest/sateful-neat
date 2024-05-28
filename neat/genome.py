@@ -172,6 +172,16 @@ class DefaultGenome(object):
 
         # Fitness results.
         self.fitness = None
+        self.states={}
+
+    def set_node_states(self, new_states):
+        self.states = new_states
+
+    def set_node_state(self, node_key, state):
+        if node_key in self.nodes:
+            self.nodes[node_key].add_gene_state(state)
+        else:
+            print(f"Node with key {node_key} not found in the genome.")
 
     def configure_new(self, config):
         """Configure a new genome based on the given configuration."""
